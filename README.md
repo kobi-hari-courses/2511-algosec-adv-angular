@@ -3,7 +3,8 @@
 ## Summaries
 ### [Module 01 - Dependency Injection](./module%2001/README.md)
 ### [Module 02 - Signals](./module%2002%20-%20signals/README.md)
-
+### [Module 03 - Resource APIs](./module%2003%20-%20resources/README.md)
+### [Module 04 - Effects vs Lifecycle Hooks](./module%2004%20-%20special%20effects/README.md)
 Possible Topics
 ---------------
 Day 01
