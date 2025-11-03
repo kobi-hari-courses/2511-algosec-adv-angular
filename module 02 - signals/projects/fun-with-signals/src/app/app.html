@@ -1,0 +1,12 @@
+<app-linked-demo/>
+
+
+<button (click)="incrementA()">Increment A</button>
+<button (click)="incrementB()">Increment B</button>
+<button (click)="incrementBoth()">Increment Both</button>
+<button (click)="setTotalToValue()">Set Total to 100</button>
+
+<div>A: {{ a() }}</div>
+<div>B: {{ b() }}</div>
+<div>Sum (computed): {{ sum() }}</div>
+<div>Total: (linked): {{total()}}</div>

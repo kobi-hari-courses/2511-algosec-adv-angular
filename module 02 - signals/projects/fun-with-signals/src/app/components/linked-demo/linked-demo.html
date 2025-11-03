@@ -1,0 +1,7 @@
+<button (click)="removeLastOption()">Remove last options</button>
+<h1>Options</h1>
+@for( option of options(); track option) {
+  <div (click)="changeSelected(option)">{{ option }}</div>
+}   
+
+<h1>Selected: {{selectedOption()}}</h1>
