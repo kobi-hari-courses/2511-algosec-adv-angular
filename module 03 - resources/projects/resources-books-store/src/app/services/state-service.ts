@@ -1,6 +1,9 @@
-import { Inject, Injectable, resource, signal } from "@angular/core";
+import { inject, Inject, Injectable, linkedSignal, resource, ResourceStreamItem, signal } from "@angular/core";
 import { Book } from "../models/book";
-import { httpResource } from "@angular/common/http";
+import { HttpClient, httpResource } from "@angular/common/http";
+import { map, of } from "rxjs";
+import { rxResource } from "@angular/core/rxjs-interop";
+import { webSocketObservable } from "../tools/web-socket-observable";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +11,7 @@ import { httpResource } from "@angular/common/http";
 export class StateService {
     readonly apiBase = 'http://localhost:3000/api/books';
     readonly wsBase = 'ws://localhost:3000/ws';
+    readonly http = inject(HttpClient);
 
     #keyword = signal('the');
 
@@ -24,6 +28,63 @@ export class StateService {
         defaultValue: []
     });
 
+    #selectedBookId = linkedSignal<Book[], string>({
+        source: () => this.searchResult.value(), 
+        computation: (src, prev) => {
+            if (!prev) {
+                return src.length > 0 ? src[0].id : '';
+            }
+
+            if (prev.value === '' && src.length > 0) {
+                return src[0].id;
+            }
+
+            return prev.value;
+        }
+    });
+
+    #selectedBook = rxResource({
+        params: () => ({ id: this.#selectedBookId() }),
+        stream: (options) => options.params.id 
+            ? this.http.get<Book>(`${this.apiBase}/${options.params.id}`)
+            : of(null), 
+        defaultValue: null
+    });
+
+    // #selectedStock = resource({
+    //     params: () => ({ id: this.#selectedBookId() }),
+    //     stream: async (options) => {
+    //         const res = signal<ResourceStreamItem<number>>({value: 0});
+
+    //         const ws = new WebSocket(`${this.wsBase}/stock/${options.params.id}`);
+    //         ws.onmessage = (event) => {
+    //             const data = JSON.parse(event.data);
+    //             if (data?.stock !== undefined) {
+    //                 res.set({ value: data.stock });
+    //             }
+    //         }
+
+    //         options.abortSignal.addEventListener('abort', () => {
+    //             ws.close();
+    //         })
+
+    //         return res;
+    //     }
+    // })
+
+    #selectedStock = rxResource({
+        params: () => ({ id: this.#selectedBookId() }),
+        stream: options => {
+            if (!options.params.id) return of(0);
+
+            return webSocketObservable<{stock: number}>(
+                `${this.wsBase}/stock/${options.params.id}`,
+            ).pipe(
+                map(msg => msg.stock)
+            )
+        }
+    })
+
     get keyword() {
         return this.#keyword.asReadonly();
     }
@@ -32,9 +93,25 @@ export class StateService {
         return this.#searchResult.asReadonly();
     }
 
+    get selectedBookId() {
+        return this.#selectedBookId.asReadonly();
+    }
+
+    get selectedBook() { 
+        return this.#selectedBook.asReadonly();
+    }
+
+    get selectedStock() {
+        return this.#selectedStock.asReadonly();
+    }
+
     setKeyword(value: string) {
         console.log('Setting keyword to', value);
         this.#keyword.set(value);
+    }
+
+    setSelectedBookId(value: string) {
+        this.#selectedBookId.set(value);
     }
 
     constructor() {}
