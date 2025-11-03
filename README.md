@@ -1,8 +1,8 @@
 # Advanced Modern Angular - Algosec (Nov, 2025)
 
 ## Summaries
-### [Module 01](./module%2001/README.md)
-
+### [Module 01 - Dependency Injection](./module%2001/README.md)
+### [Module 02 - Signals](./module%2002%20-%20signals/README.md)
 
 Possible Topics
 ---------------
