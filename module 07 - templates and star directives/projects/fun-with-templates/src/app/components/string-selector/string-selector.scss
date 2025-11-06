@@ -1,0 +1,22 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .item {
+        border: 1px solid #ccc;
+        padding: 4px;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+
+        &.chosen {
+            background-color: #d0eaff;
+            border-color: #3399ff;
+            font-weight: bold;
+        }
+    }
+}

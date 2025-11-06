@@ -1,0 +1,33 @@
+<app-string-selector [options]="possibleColors" [(selectedOption)]="selectedColor">
+    <div *item-template="let color" class="color-item">
+      <span [style.background]="color"></span>
+      <strong>{{ color }}</strong>
+    </div>
+  </app-string-selector>
+
+<button (click)="toggleHeaders()">Toggle Header</button>
+<h1 *ngIf="showHeaders()" [style.color]="selectedColor()">Hello World</h1>
+
+<ng-template [ngIf]="showHeaders()">
+  <h1>Hello World</h1>
+</ng-template>
+
+<ng-template [myIf]="showHeaders()">
+  <h1>Hello World</h1>
+</ng-template>
+
+<h1 *myIf="showHeaders()">Hello World</h1>
+
+<!-- <ng-template #temp1 let-day="today" let-color="color" let-title>
+  <h1>{{title}}</h1>
+  <h2 [style.color]="color">Today is: {{day}}</h2>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="temp1; context:{today: 'Sunday', color: 'blue', $implicit: 'Hello'}"/>
+
+<ng-container *ngTemplateOutlet="temp1; context:{today: 'Tuesday', color: 'red', $implicit: 'World'}"/>
+
+<ng-container *ngTemplateOutlet="temp1; context:{today: 'Thursday', color: 'green', $implicit: 'How'}"/>
+
+<ng-container *ngTemplateOutlet="temp1; context:{today: 'Saturday', color: 'brown', $implicit: 'You'}"/>
+ -->
