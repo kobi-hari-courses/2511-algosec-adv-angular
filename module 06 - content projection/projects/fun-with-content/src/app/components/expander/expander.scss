@@ -1,11 +1,19 @@
 :host {
+  --p-border-color: var(--expander-border-color, black);
+  --p-header-color: var(--expander-header-color, lightgray);
+  --p-content-color: var(--expander-content-color, white);
+  --p-border-radius: var(--expander-border-radius, 4px);
+
+
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
     'button header'
     'content content';
-  border: 1px solid black;
+  border: 1px solid var(--p-border-color);
+  border-radius: var(--p-border-radius);
+  overflow: hidden;
 
   .button-area {
     grid-area: button;
@@ -23,12 +31,13 @@
   .header-area {
     grid-area: header;
     padding: 4px;
-    background-color: lightgray;
+    background-color: var(--p-header-color);
   }
 
   .content-area {
     grid-area: content;
     padding: 4px;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--p-border-color);
+    background: var(--p-content-color)
   }
 }

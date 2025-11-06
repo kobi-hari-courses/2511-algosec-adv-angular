@@ -1,27 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 h3 {
   color: magenta;
 }
 
 button[app-expander-toggle] {
-    border-radius: 50%;
-    background-color: lightblue;
-    color: darkblue;
-    border: 1px solid darkblue;
-    aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: lightblue;
+  color: darkblue;
+  border: 1px solid darkblue;
+  aspect-ratio: 1 / 1;
 }
 
 div[app-expander-header] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 
-    img {
-        height: 40px;
-    }
+  img {
+    height: 40px;
+  }
 
-    h2 {
-        font-weight: normal;
-        font-size: 16px;
-    }
+  h2 {
+    font-weight: normal;
+    font-size: 16px;
+  }
+}
+
+.special {
+  border: 3px solid red;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  --expander-border-color: red;
+  --expander-header-color: pink;
+  --expander-content-color: mistyrose;
+  --expander-border-radius: 12px;
+}
+
+.bluish {
+    color: navy;
+
+    --expander-border-color: navy;
+    --expander-header-color: lightblue;
+    --expander-content-color: aliceblue;
 }
