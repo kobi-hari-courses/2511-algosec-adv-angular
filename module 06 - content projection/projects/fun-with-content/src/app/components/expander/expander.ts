@@ -8,7 +8,6 @@ import { Component, input, signal } from '@angular/core';
 })
 export class Expander {
   readonly header = input('Header');
-  readonly content = input('Content');
 
   readonly isExpanded = signal(true);
   toggle() {
