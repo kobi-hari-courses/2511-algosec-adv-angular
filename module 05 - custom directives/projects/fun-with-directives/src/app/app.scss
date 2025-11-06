@@ -1,0 +1,21 @@
+.field {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to right, white, lime calc(var(--mouse-x-ratio) * 100%) , green);
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+    .ball {
+        display: none;
+        position: absolute;
+        top: calc(var(--mouse-y) - 25px);
+        left: calc(var(--mouse-x) - 25px);
+      
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+    }
+}
+

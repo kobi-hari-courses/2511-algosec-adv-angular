@@ -1,6 +1,18 @@
-<h1 highlight class="x">Welcome to "Fun with Directives"</h1>
+<div class="field" app-mouse-follow #myField="mouseFollow">
+  <div class="ball"></div>
+</div>
+
+<pre>
+  <span>X = {{myField.x()}}</span>
+  <span>Y = {{myField.y()}}</span>
+  <span>X Ratio = {{myField.xRatio()}}</span>
+  <span>Y Ratio = {{myField.yRatio()}}</span>
+</pre>
+
+
+<h1 highlight class="x" #myHeader="backgroundPainter">Welcome to "Fun with Directives"</h1>
 <div>
-  <button>Click ME</button>
+  <button (click)="myHeader.resetHighlight()">Click ME</button>
   <button>OK</button>
   <button>Cancel</button>
 </div>

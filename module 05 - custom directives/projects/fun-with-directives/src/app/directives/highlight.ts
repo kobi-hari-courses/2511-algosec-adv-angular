@@ -12,10 +12,11 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '.x',
+  selector: '[highlight]',
   host: {
     '[style.backgroundColor]': 'effectiveBg()',
   },
+  exportAs: 'backgroundPainter'
 })
 export class Highlight {
   readonly elem = inject(ElementRef) as ElementRef<HTMLElement>;
@@ -26,6 +27,13 @@ export class Highlight {
   readonly effectiveBg = linkedSignal(() => this.bg());
 
   readonly timePassed = output<void>();
+
+  resetHighlight() {
+    this.effectiveBg.set('yellow');
+    setTimeout(() => {
+      this.effectiveBg.set('');
+    }, 5000);
+  }
 
   constructor() {
     console.log('Highlight directive initialized');
@@ -39,6 +47,6 @@ export class Highlight {
     setTimeout(() => {
       this.effectiveBg.set('');
       this.timePassed.emit();
-    }, 50000);
+    }, 5000);
   }
 }
