@@ -2,7 +2,7 @@ import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-expander',
-  imports: [],
+  standalone: false,
   templateUrl: './expander.html',
   styleUrl: './expander.scss',
 })

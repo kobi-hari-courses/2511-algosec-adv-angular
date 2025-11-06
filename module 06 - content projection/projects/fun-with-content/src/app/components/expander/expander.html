@@ -1,11 +1,5 @@
 <div class="button-area">
-    <button (click)="toggle()">
-        @if(isExpanded()) {
-            -
-        } @else {
-            +
-        }
-    </button>
+    <ng-content select="[app-expander-toggle]"/>
 </div>
 
 <div class="header-area">
