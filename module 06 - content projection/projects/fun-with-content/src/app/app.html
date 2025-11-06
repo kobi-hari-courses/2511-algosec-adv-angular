@@ -1,6 +1,7 @@
-<app-expander>
+<app-expander #expander="expander">
   <button app-expander-toggle>
-    More...
+    <span app-expander-expanded>Less...</span>
+    <span app-expander-collapsed>More...</span>
   </button>
 
   <div app-expander-header>
@@ -28,3 +29,7 @@
     </li>
   </ul>
 </app-expander>
+
+<button app-expander-toggle>
+  Hello !
+</button>

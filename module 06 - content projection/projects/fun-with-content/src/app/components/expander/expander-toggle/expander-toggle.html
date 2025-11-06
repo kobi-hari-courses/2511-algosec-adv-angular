@@ -1,0 +1,7 @@
+@if(exapnder) { @if(exapnder.isExpanded()) {
+<ng-content select="[app-expander-expanded]" />
+} @else {
+<ng-content select="[app-expander-collapsed]" />
+} } @else {
+    <ng-content/>
+ }

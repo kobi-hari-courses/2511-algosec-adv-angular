@@ -5,6 +5,7 @@ import { Component, input, signal } from '@angular/core';
   standalone: false,
   templateUrl: './expander.html',
   styleUrl: './expander.scss',
+  exportAs: 'expander',
 })
 export class Expander {
   readonly isExpanded = signal(false);
