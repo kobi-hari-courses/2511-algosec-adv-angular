@@ -7,9 +7,7 @@ import { Component, input, signal } from '@angular/core';
   styleUrl: './expander.scss',
 })
 export class Expander {
-  readonly header = input('Header');
-
-  readonly isExpanded = signal(true);
+  readonly isExpanded = signal(false);
   toggle() {
     this.isExpanded.update((value) => !value);
   }

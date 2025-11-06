@@ -9,7 +9,7 @@
 </div>
 
 <div class="header-area">
-    {{header()}}
+    <ng-content select="[app-expander-header]"/>
 </div>
 
 @if(isExpanded()) {
