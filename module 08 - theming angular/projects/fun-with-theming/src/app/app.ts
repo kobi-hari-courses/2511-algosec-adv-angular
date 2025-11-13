@@ -2,13 +2,17 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from "./components/header/header";
 import { Sidebar } from "./components/sidebar/sidebar";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Sidebar],
+  imports: [FormsModule, RouterOutlet, Header, Sidebar],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
-})
+  styleUrl: './app.scss', 
+  host: {
+    '[style.--primary]': 'primaryColor()'
+
+  }})
 export class App {
-  protected readonly title = signal('fun-with-theming');
+  readonly primaryColor = signal('blue');
 }

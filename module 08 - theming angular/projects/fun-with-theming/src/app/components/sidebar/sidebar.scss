@@ -16,24 +16,24 @@
   border-radius: 6px;
   font-size: 0.9rem;
   text-decoration: none;
-  color: #004080; // neutral
+  color: var(--p-70); // neutral
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.05s ease;
 }
 
 .item:hover {
-  background-color: #004080; // primary
-  color: #ffffff; // neutral
+  background-color: var(--p-70); // primary
+  color: var(--n-00); // neutral
   transform: translateX(1px);
 }
 
 .item--active {
-  background-color: #0074d9; // primary
-  color: #ffffff; // neutral
+  background-color: var(--p-50); // primary
+  color: var(--n-00); // neutral
 }
 
 .bullet {
   width: 6px;
   height: 6px;
   border-radius: 999px;
-  background-color: #0074d9; // primary light
+  background-color: var(--p-50); // primary light
 }

@@ -5,9 +5,55 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #0074d9;
+  --background: white;
+  --foreground: black;
+}
+
+.theme {
+  --accent: hsl(from var(--primary) calc(h + 180) s l);
+
+  --n-00: var(--background);
+  --n-10: color-mix(in srgb, var(--background), var(--foreground) 10%);
+  --n-20: color-mix(in srgb, var(--background), var(--foreground) 20%);
+  --n-30: color-mix(in srgb, var(--background), var(--foreground) 30%);
+  --n-40: color-mix(in srgb, var(--background), var(--foreground) 40%);
+  --n-50: color-mix(in srgb, var(--background), var(--foreground) 50%);
+  --n-60: color-mix(in srgb, var(--background), var(--foreground) 60%);
+  --n-70: color-mix(in srgb, var(--background), var(--foreground) 70%);
+  --n-80: color-mix(in srgb, var(--background), var(--foreground) 80%);
+  --n-90: color-mix(in srgb, var(--background), var(--foreground) 90%);
+  --n-100: var(--foreground);
+
+  --p-00: var(--background);
+  --p-10: color-mix(in srgb, var(--background), var(--primary) 20%);
+  --p-20: color-mix(in srgb, var(--background), var(--primary) 40%);
+  --p-30: color-mix(in srgb, var(--background), var(--primary) 60%);
+  --p-40: color-mix(in srgb, var(--background), var(--primary) 80%);
+  --p-50: var(--primary);
+  --p-60: color-mix(in srgb, var(--primary), var(--foreground) 20%);
+  --p-70: color-mix(in srgb, var(--primary), var(--foreground) 40%);
+  --p-80: color-mix(in srgb, var(--primary), var(--foreground) 60%);
+  --p-90: color-mix(in srgb, var(--primary), var(--foreground) 80%);
+  --p-100: var(--foreground);
+
+  --a-00: var(--background);
+  --a-10: color-mix(in srgb, var(--background), var(--accent) 20%);
+  --a-20: color-mix(in srgb, var(--background), var(--accent) 40%);
+  --a-30: color-mix(in srgb, var(--background), var(--accent) 60%);
+  --a-40: color-mix(in srgb, var(--background), var(--accent) 80%);
+  --a-50: var(--accent);
+  --a-60: color-mix(in srgb, var(--accent), var(--foreground) 20%);
+  --a-70: color-mix(in srgb, var(--accent), var(--foreground) 40%);
+  --a-80: color-mix(in srgb, var(--accent), var(--foreground) 60%);
+  --a-90: color-mix(in srgb, var(--accent), var(--foreground) 80%);
+  --a-100: var(--foreground);
+}
+
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background-color: #e5e5e5; // neutral
-  color: #111111; // neutral
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--n-10); // neutral
+  color: var(--n-90); // neutral
 }

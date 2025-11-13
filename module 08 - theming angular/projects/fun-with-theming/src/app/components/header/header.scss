@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1.5rem;
-  background-color: #004080; // primary
-  color: #ffffff; // neutral
+  background-color: var(--p-70); // primary
+  color: var(--n-00); // neutral
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
@@ -18,13 +18,13 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #001a33, #0074d9); // primary
+  background: linear-gradient(135deg, var(--p-90), var(--p-50)); // primary
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.9rem;
-  color: #ffffff; // neutral
+  color: var(--n-00); // neutral
 }
 
 .title h1 {
