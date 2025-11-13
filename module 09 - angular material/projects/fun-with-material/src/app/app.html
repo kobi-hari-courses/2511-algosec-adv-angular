@@ -1,8 +1,11 @@
 <div class="toolbar">
-  <button matButton="filled">Primary</button>
-  <button matButton="filled" color="tertiary">Primary</button>
-  <button matButton="filled" color="warn">Primary</button>
-  <button matButton="filled" color="success">Primary</button>
+  <button matButton="filled" (click)="onGetNames()">Open Dialog</button>
+  <button matButton="filled" color="tertiary">Tertiary</button>
+  <button matButton="filled" color="warn">Warn</button>
+  <button matButton="filled" color="success">
+    <mat-icon>check</mat-icon>
+    <span>Success</span>
+  </button>
 </div>
 
 <div class="icons">
@@ -10,7 +13,61 @@
   <mat-icon color="tertiary" fontSet="icons">person</mat-icon>
   <mat-icon color="warn">settings</mat-icon>
   <mat-icon color="success">download</mat-icon>
-  <mat-icon color="warn" svgIcon="customer"/>
+  <mat-icon color="warn" svgIcon="customer" />
+</div>
+
+<h3>Drag and Drop</h3>
+<div class="drag-n-drop">
+  <div class="colors-list" cdkDropList
+    #list1="cdkDropList"
+    [cdkDropListData]="firstList()"
+    [cdkDropListConnectedTo]="list2"
+    >
+    @for(c of firstList(); track c) {
+    <div class="color-item" cdkDrag>
+      {{ c }}
+    </div>
+    }
+  </div>
+  <div class="colors-list" cdkDropList
+    #list2="cdkDropList"
+    [cdkDropListData]="secondList()"
+    [cdkDropListConnectedTo]="list1"
+    (cdkDropListDropped)="onDrop($event)"
+
+  >
+    @for(c of secondList(); track c) {
+    <div class="color-item" cdkDrag>
+      {{ c }}
+    </div>
+    }
+  </div>
+</div>
+
+<h3>Virtual Scroll Viewer</h3>
+<cdk-virtual-scroll-viewport class="gigantic-list" itemSize="80">
+  <div class="list-item" *cdkVirtualFor="let item of bigArray">
+    {{ item }}
+  </div>
+</cdk-virtual-scroll-viewport>
+
+<div class="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your name</mat-label>
+    <input matInput [formControl]="name" />
+    <mat-hint>First Name + Last Name</mat-hint>
+    <mat-error>
+      <div>
+        <mat-icon color="warn">refresh</mat-icon>
+        Name is required
+      </div>
+    </mat-error>
+    <div matSuffix>
+      <button matIconButton>
+        <mat-icon color="primary">close</mat-icon>
+      </button>
+    </div>
+  </mat-form-field>
 </div>
 
 <div>

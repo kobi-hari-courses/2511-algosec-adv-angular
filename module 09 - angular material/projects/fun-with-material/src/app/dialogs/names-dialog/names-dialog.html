@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Enter Your Name</h2>
+
+<mat-dialog-content>
+  <div class="fields" [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" placeholder="Enter your first name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" placeholder="Enter your last name" />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-dialog-close matButton >No Thanks</button>
+    <button (click)="onOk()" matButton cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+
