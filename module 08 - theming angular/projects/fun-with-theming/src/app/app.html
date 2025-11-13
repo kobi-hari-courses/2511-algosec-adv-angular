@@ -1,0 +1,85 @@
+<div class="shell">
+  <app-header></app-header>
+  <div class="layout">
+    <app-sidebar></app-sidebar>
+    <div class="content">
+      <section class="content-header">
+        <div>
+          <h2>Dashboard</h2>
+          <p>Overview of your application state.</p>
+        </div>
+        <div class="content-header__actions">
+          <button class="btn btn--primary">Primary Action</button>
+          <button class="btn btn--ghost">Secondary Action</button>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <article class="card">
+          <header class="card__header">
+            <h3>Traffic</h3>
+            <span class="badge badge--accent">Live</span>
+          </header>
+          <div class="card__body">
+            <p>Current active users on the platform.</p>
+            <div class="metric">
+              <span class="metric__value">128</span>
+              <span class="metric__label">online users</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <header class="card__header">
+            <h3>Conversion</h3>
+          </header>
+          <div class="card__body">
+            <p>Monthly sign-up conversion rate.</p>
+            <div class="progress">
+              <div class="progress__bar">
+                <div class="progress__value" style="width: 62%"></div>
+              </div>
+              <span class="progress__label">62%</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-table">
+        <header class="content-table__header">
+          <h3>Recent Activity</h3>
+        </header>
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Action</th>
+              <th>Status</th>
+              <th>When</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alice</td>
+              <td>Created a new report</td>
+              <td><span class="status status--ok">Success</span></td>
+              <td>2 min ago</td>
+            </tr>
+            <tr>
+              <td>Bob</td>
+              <td>Updated theme settings</td>
+              <td><span class="status status--ok">Success</span></td>
+              <td>15 min ago</td>
+            </tr>
+            <tr>
+              <td>Charlie</td>
+              <td>Login attempt</td>
+              <td><span class="status status--warn">Warning</span></td>
+              <td>1 hour ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</div>
