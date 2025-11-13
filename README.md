@@ -8,6 +8,8 @@
 ### [Module 05 - Custom Directives](./module%2005%20-%20custom%20directives/README.md)
 ### [Module 06 - Content Projection](./module%2006%20-%20content%20projection/README.md)
 ### [Module 07 - Templates and Structural Directives](./module%2007%20-%20templates%20and%20star%20directives/README.md)
+### [Module 08 - Theming Angular and Material](./module%2008%20-%20theming%20angular/README.md)
+### [Module 09 - Angular Material Essentials](./module%2009%20-%20angular%20material/README.md)
 
 Possible Topics
 ---------------
