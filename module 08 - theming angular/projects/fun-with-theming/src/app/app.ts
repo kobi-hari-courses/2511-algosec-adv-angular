@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from "./components/header/header";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { FormsModule } from '@angular/forms';
+import { FunWithLightDark } from "./fun-with-light-dark/fun-with-light-dark";
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, RouterOutlet, Header, Sidebar],
+  imports: [FormsModule, RouterOutlet, Header, Sidebar, FunWithLightDark],
   templateUrl: './app.html',
   styleUrl: './app.scss', 
   host: {
