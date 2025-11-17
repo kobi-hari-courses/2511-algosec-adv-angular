@@ -3,10 +3,11 @@ import { Question } from '../../models/question.model';
 import { SharedModule } from '../../shared.module';
 import { FormControl, Validators } from '@angular/forms';
 import { QuizStore } from '../../store/quiz.store';
+import { BusyComponent } from '../busy/busy.component';
 
 @Component({
     selector: 'app-question-presenter',
-    imports: [SharedModule],
+    imports: [SharedModule, BusyComponent],
     templateUrl: './question-presenter.component.html',
     styleUrl: './question-presenter.component.scss'
 })

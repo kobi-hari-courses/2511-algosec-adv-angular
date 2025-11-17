@@ -1,3 +1,7 @@
+@if(store.isBusy()) {
+  <app-busy/>
+}
+
 @let q = question();
 <h1>
   Question: What do you get when you add @for (color of q.caption; track color)

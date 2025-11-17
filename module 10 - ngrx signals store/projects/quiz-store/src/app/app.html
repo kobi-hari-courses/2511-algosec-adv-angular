@@ -3,6 +3,11 @@
         (click)="store.resetQuiz()">
         <mat-icon>restart_alt</mat-icon>
     </button>
+    <button mat-icon-button matTooltip="Create new Quiz"
+      (click)="store.createNewQuiz()"
+    >
+      <mat-icon>auto_fix_high</mat-icon>
+    </button>
 </app-toolbar>
 <div class="main">
   @if(store.isDone()) {

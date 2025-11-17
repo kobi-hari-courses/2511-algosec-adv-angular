@@ -1,14 +1,21 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
-import { initialQuizSlice } from "./quiz.slice";
-import { computed } from "@angular/core";
-import { answerCurrentQuestion, resetQuiz } from "./quiz.updaters";
+import { getState, patchState, signalStore, withComputed, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
+import { initialQuizSlice, QuizSlice } from "./quiz.slice";
+import { computed, effect, inject } from "@angular/core";
+import { answerCurrentQuestion, resetQuiz, setBusy, setIdle } from "./quiz.updaters";
 import { countCorrectAnswers } from "./quiz.helpers";
 import { withDevtools } from "@angular-architects/ngrx-toolkit";
+import { withSessionStorage } from "../custom-features/with-session-storage";
+import { withConditionDevtools } from "../custom-features/with-condition-devtools";
+import { ColorQuizGeneratorService } from "../services/color-quiz-generator.service";
+import { firstValueFrom } from "rxjs";
 
 
 export const QuizStore = signalStore(
     { providedIn: 'root' },
     withState(initialQuizSlice), 
+    withProps(store => ({
+        _generatorService: inject(ColorQuizGeneratorService)
+    })), 
     withComputed(store => {
         const currentQuestionIndex = computed(() => store.answers().length);
         const currentQuestion = computed(() => store.questions()[currentQuestionIndex()]);
@@ -27,8 +34,31 @@ export const QuizStore = signalStore(
     withMethods(store => ({
         resetQuiz: () => patchState(store, resetQuiz()), 
         answerCurrentQuestion: (answerIndex: number) => 
-            patchState(store, answerCurrentQuestion(answerIndex))
+            patchState(store, answerCurrentQuestion(answerIndex)), 
+        createNewQuiz: async () => {
+            patchState(store, setBusy());
+            const questions = await firstValueFrom(store._generatorService.createRandomQuiz());
+            patchState(store, setIdle(), {questions, answers: []});
+        }
     })), 
-    withDevtools('QuizStore')
+    withConditionDevtools('QuizStore'), 
+    withSessionStorage<QuizSlice>('quiz')
+    // withHooks(store => ({
+    //     onInit: () => {
+    //         // Load from session storage
+    //         const jsonText = sessionStorage.getItem('quiz');
+    //         if (jsonText) {
+    //             const state = JSON.parse(jsonText) as QuizSlice;
+    //             patchState(store, state);
+    //         }
+
+    //         effect(() => {
+    //             const state = getState(store);
+    //             const jsonText = JSON.stringify(state);
+    //             sessionStorage.setItem('quiz', jsonText);
+    //         })
+
+    //     }
+    // }))
 );
 
