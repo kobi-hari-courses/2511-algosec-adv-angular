@@ -1,5 +1,6 @@
-import { Component, computed, Input, signal } from '@angular/core';
+import { Component, computed, inject, Input, signal } from '@angular/core';
 import { SharedModule } from '../../shared.module';
+import { QuizStore } from '../../store/quiz.store';
 
 @Component({
     selector: 'app-progress',
@@ -8,9 +9,10 @@ import { SharedModule } from '../../shared.module';
     styleUrl: './progress.component.scss'
 })
 export class ProgressComponent {
-  readonly value = signal(4);
+  readonly store = inject(QuizStore);
 
-  readonly max = signal(9);
+  readonly value = this.store.currentQuestionIndex;
+  readonly max = this.store.questionsCount;
 
   readonly ratio = computed(() => this.value() / this.max());
 
