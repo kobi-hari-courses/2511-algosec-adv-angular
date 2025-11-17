@@ -1,0 +1,14 @@
+<p>
+  X: {{ store.x() }} ,
+  Y: {{ store.y() }}
+</p>
+<hr>
+<p>
+  Sum: {{ store.sum() }},
+  Diff: {{ store.diff()}}
+</p>
+
+<div class="actions">
+  <button (click)="store.incX()">Increment X</button>
+  <button (click)="store.incY()">Increment Y</button>
+</div>
