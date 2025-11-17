@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { SharedModule } from '../../shared.module';
 
 @Component({
@@ -10,6 +10,6 @@ import { SharedModule } from '../../shared.module';
 export class ToolbarComponent {
   readonly caption = input.required<string>();
 
-  readonly icon = input('');
+  readonly icon = input<string>('');
 
 }

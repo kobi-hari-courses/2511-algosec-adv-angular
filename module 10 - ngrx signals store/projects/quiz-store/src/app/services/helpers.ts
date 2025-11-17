@@ -1,5 +1,4 @@
-import {keyword, rgb } from "color-convert";
-import { KEYWORD, RGB } from "color-convert/conversions";
+import { keyword, KEYWORD, RGB, rgb } from "color-convert/conversions";
 import namer from 'color-namer';
 import { Question } from "../models/question.model";
 

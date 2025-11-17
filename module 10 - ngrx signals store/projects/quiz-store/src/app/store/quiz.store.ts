@@ -4,7 +4,6 @@ import { computed } from "@angular/core";
 import { answerCurrentQuestion, resetQuiz } from "./quiz.updaters";
 import { countCorrectAnswers } from "./quiz.helpers";
 import { withDevtools } from "@angular-architects/ngrx-toolkit";
-import { ENV } from "./environment";
 
 
 export const QuizStore = signalStore(

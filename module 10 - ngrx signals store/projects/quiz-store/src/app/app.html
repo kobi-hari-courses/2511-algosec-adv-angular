@@ -1,4 +1,8 @@
 <app-toolbar caption="Colors Quiz" icon="palette">
+  <button mat-icon-button matTooltip="Reset Quiz"
+        (click)="store.resetQuiz()">
+        <mat-icon>restart_alt</mat-icon>
+    </button>
 </app-toolbar>
 <div class="main">
   @if(store.isDone()) {
@@ -9,4 +13,3 @@
 
   }
 </div>
-  <button (click)="store.resetQuiz()">Reset</button>
