@@ -12,13 +12,19 @@ import { initialQuizSlice, QuizSlice } from './quiz.slice';
 import { computed, effect, inject } from '@angular/core';
 import { answerCurrentQuestion, resetQuiz, setBusy, setIdle } from './quiz.updaters';
 import { countCorrectAnswers } from './quiz.helpers';
-import { withDevtools } from '@angular-architects/ngrx-toolkit';
+import {
+  rxMutation,
+  switchOp,
+  withDevtools,
+  withMutations,
+} from '@angular-architects/ngrx-toolkit';
 import { withSessionStorage } from '../custom-features/with-session-storage';
 import { withConditionDevtools } from '../custom-features/with-condition-devtools';
 import { ColorQuizGeneratorService } from '../services/color-quiz-generator.service';
 import { catchError, exhaustMap, finalize, firstValueFrom, map, of, switchMap, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { Result, ResultsService } from '../services/results.service';
 
 export const QuizStore = signalStore(
   { providedIn: 'root' },
@@ -30,13 +36,16 @@ export const QuizStore = signalStore(
         stream: () => _generatorService.createRandomQuiz(),
         defaultValue: [],
       }),
+      _resultsService: inject(ResultsService),
     };
   }),
   withComputed((store) => {
     const currentQuestionIndex = computed(() => store.answers().length);
     const currentQuestion = computed(() => store.questions()[currentQuestionIndex()]);
     const questionsCount = computed(() => store.questions().length);
-    const isDone = computed(() => (questionsCount() > 0) && (questionsCount() === currentQuestionIndex()));
+    const isDone = computed(
+      () => questionsCount() > 0 && questionsCount() === currentQuestionIndex()
+    );
     const correctCount = computed(() => countCorrectAnswers(store.questions(), store.answers()));
 
     return {
@@ -70,6 +79,18 @@ export const QuizStore = signalStore(
   })),
   withConditionDevtools('QuizStore'),
   withSessionStorage<QuizSlice>('quiz'),
+  withMutations((store) => ({
+    saveResults: rxMutation({
+      operation: (result: Result) => store._resultsService.saveResults(result),
+      onSuccess: (res) => {
+        console.log('Results saved successfully', res);
+      },
+      onError: (err) => {
+        console.error('Error saving results', err);
+      },
+      operator: switchOp,
+    }),
+  })),
   withHooks((store) => ({
     onInit: () => {
       effect(() => {
@@ -79,7 +100,7 @@ export const QuizStore = signalStore(
         }
 
         if (store._quizGeneratorResource.status() === 'error') {
-            console.log('Failed to load quiz:', store._quizGeneratorResource.error());
+          console.log('Failed to load quiz:', store._quizGeneratorResource.error());
         }
       }),
         effect(() => {

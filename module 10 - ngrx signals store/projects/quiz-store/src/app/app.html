@@ -12,6 +12,10 @@
     >
       <mat-icon>auto_fix_high</mat-icon>
     </button>
+    <button mat-icon-button matTooltip="Save"
+      (click)="onSaveResults()">
+      <mat-icon>save</mat-icon>
+    </button>
 </app-toolbar>
 <div class="main">
   @if(store.isDone()) {
