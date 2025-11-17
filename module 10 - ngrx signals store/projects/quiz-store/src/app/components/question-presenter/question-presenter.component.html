@@ -1,11 +1,7 @@
-@if(store.isBusy()) {
-  <app-busy/>
-}
-
-@let q = question();
+ @let q = question(); @if (q) {
 <h1>
-  Question: What do you get when you add @for (color of q.caption; track color)
-  { @if($index > 0) { @if ($last) { and } @else { , } }
+  Question: What do you get when you add @for (color of q.caption; track color) { @if($index > 0) {
+  @if ($last) { and } @else { , } }
 
   {{ color | colorName }}
   <span class="color-item" [style.background]="color"></span>
@@ -19,3 +15,5 @@
   </div>
   }
 </div>
+
+}

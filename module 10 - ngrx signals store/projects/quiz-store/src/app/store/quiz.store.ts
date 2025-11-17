@@ -36,7 +36,7 @@ export const QuizStore = signalStore(
     const currentQuestionIndex = computed(() => store.answers().length);
     const currentQuestion = computed(() => store.questions()[currentQuestionIndex()]);
     const questionsCount = computed(() => store.questions().length);
-    const isDone = computed(() => questionsCount() === currentQuestionIndex());
+    const isDone = computed(() => (questionsCount() > 0) && (questionsCount() === currentQuestionIndex()));
     const correctCount = computed(() => countCorrectAnswers(store.questions(), store.answers()));
 
     return {

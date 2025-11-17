@@ -6,6 +6,7 @@ import { ProgressComponent } from './components/progress/progress.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DoneComponent } from './components/done/done.component';
 import { QuizStore } from './store/quiz.store';
+import { BusyComponent } from "./components/busy/busy.component";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { QuizStore } from './store/quiz.store';
     ProgressComponent,
     ToolbarComponent,
     DoneComponent,
-  ],
+    BusyComponent
+],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
