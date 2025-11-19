@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { FieldTree } from '@angular/forms/signals';
+import { Component, computed, contentChild, input } from '@angular/core';
+import { Field, FieldTree } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-field',
@@ -8,7 +8,10 @@ import { FieldTree } from '@angular/forms/signals';
   styleUrl: './field.scss',
 })
 export class FieldComponent<T> {
-  readonly field = input.required<FieldTree<T>>();
+  readonly fieldDirective = contentChild.required(Field<T>);
+
+  readonly field = computed(() => this.fieldDirective().field());
+
   readonly label = input.required<string>();
 
 }
