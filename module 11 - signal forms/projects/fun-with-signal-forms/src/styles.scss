@@ -33,6 +33,12 @@ body {
     display: flex;
     flex-direction: column;
 
+    :has(input[type='checkbox']) & {
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+    }
+
     label {
       margin-bottom: 4px;
       font-weight: 600;
@@ -55,7 +61,6 @@ body {
       width: auto;
       margin-right: 8px;
       transform: scale(1.2);
-      align-self: flex-start;
     }
   }
 }
