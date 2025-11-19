@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { DinnerReview } from '../../model/dinner-review.model';
 import { form } from '@angular/forms/signals';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @Component({
   selector: 'app-d1-simple-form',

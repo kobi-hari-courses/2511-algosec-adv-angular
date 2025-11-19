@@ -1,27 +1,30 @@
 <div class="form">
   <div class="form-header">Dinner Review</div>
 
-  <div class="field">
-    <label for="username">Username:</label>
-    <input type="text" [class.invalid]="dinnerForm.username().invalid() && dinnerForm.username().touched()" [field]="dinnerForm.username" />
-  </div>
-  <div class="field">
-    <label for="food">Food:</label>
-    <input type="text" [class.invalid]="dinnerForm.food().invalid() && dinnerForm.food().touched()" [field]="dinnerForm.food" />
-  </div>
-  <div class="field">
-    <label for="rating">Rating:</label>
-    <input type="range" [class.invalid]="dinnerForm.rating().invalid()" [field]="dinnerForm.rating" />
-  </div>
-  <div class="field">
-    <label for="comeBack">Would you come back?</label>
+  <app-field [field]="dinnerForm.username" label="Username">
+    <input type="text" [field]="dinnerForm.username" />
+  </app-field>
+
+  <app-field [field]="dinnerForm.food" label="Food">
+    <input type="text" [field]="dinnerForm.food" />
+  </app-field>
+  <app-field [field]="dinnerForm.rating" label="Rating">
+    <input type="range" [field]="dinnerForm.rating" />
+  </app-field>
+  @if(!dinnerForm.comeBack().hidden()) {
+  <app-field [field]="dinnerForm.comeBack" label="Would you come back?">
     <input type="checkbox" [field]="dinnerForm.comeBack" />
-  </div>
+  </app-field>
+
+  }
 
   <button [disabled]="dinnerForm().invalid()">Submit</button>
 </div>
 
 <pre>
     {{ model() | json }}
-
+</pre>
+<pre>
+  <div>Rating: {{ dinnerForm.rating().errors() | json}}</div>
+  <div>Username: {{ dinnerForm.username().errors() | json}}</div>
 </pre>

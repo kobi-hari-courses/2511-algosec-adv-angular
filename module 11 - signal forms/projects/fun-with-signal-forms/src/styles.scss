@@ -34,7 +34,7 @@ body {
     align-self: center;
   }
 
-  .field {
+  .field, app-field {
     display: flex;
     flex-direction: column;
 
@@ -96,4 +96,11 @@ button {
         cursor: not-allowed;
     }
 
+}
+
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
 }

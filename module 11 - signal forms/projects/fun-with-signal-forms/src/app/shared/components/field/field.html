@@ -1,0 +1,12 @@
+<label>
+    {{ label() }}
+    @if(field()().required()) {
+        * 
+    }
+</label>
+<ng-content></ng-content>
+@if(field()().touched()) { @for(err of field()().errors(); track err.kind) {
+<div class="error">
+  {{ err.message }}
+</div>
+} }
