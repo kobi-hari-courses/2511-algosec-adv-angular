@@ -9,4 +9,25 @@
         flex-direction: column;
         margin: 16px;
     }
+
+    nav {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+        a {
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: #61a1e1;
+            color: white;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: #3076c7;
+            }
+
+            &.selected {
+                background-color: #0d47a1;
+            }
+        }
+    }
 }
