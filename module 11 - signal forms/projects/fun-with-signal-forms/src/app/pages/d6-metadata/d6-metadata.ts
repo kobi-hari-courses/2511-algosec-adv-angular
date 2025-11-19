@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, linkedSignal, signal } from '@angular/core';
 import { DinnerReview } from '../../model/dinner-review.model';
 import { aggregateMetadata, apply, customError, form, hidden, MIN_LENGTH, REQUIRED, SchemaPath, submit, validateTree } from '@angular/forms/signals';
 import { SharedModule } from '../../shared/shared.module';
@@ -15,12 +15,14 @@ import { LABEL } from '../../shared/metadata-tokens';
 export default class D6Metadata {
   readonly reviewsService = inject(ReviewsService);
 
-  readonly model = signal<DinnerReview>({
+  readonly #myPrivateData = signal<DinnerReview>({
     username: '', 
     food: '', 
     rating: 5, 
     comeBack: true, 
-  });
+  }).asReadonly();
+
+  readonly model = linkedSignal(() => this.#myPrivateData());
 
   readonly dinnerForm = form(this.model, x => {
     apply(x, basicDinnerSchema);
