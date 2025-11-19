@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { DinnerReview } from '../../model/dinner-review.model';
-import { customError, form, hidden, max, maxLength, min, minLength, required, validate, validateTree } from '@angular/forms/signals';
+import { apply, customError, form, hidden, max, maxLength, min, minLength, required, validate, validateAsync, validateStandardSchema, validateTree } from '@angular/forms/signals';
 import { SharedModule } from '../../shared/shared.module';
 import { capitalized } from './validators';
+import { basicDinnerSchema } from '../../model/basic-dinner-schema';
 
 @Component({
   selector: 'app-d3-advanced-validations',
@@ -11,6 +12,9 @@ import { capitalized } from './validators';
   styleUrl: './d3-advanced-validations.scss',
 })
 export default class D3AdvancedValidations {
+  readonly myNum = signal(3);
+
+
   readonly model = signal<DinnerReview>({
     username: '', 
     food: '', 
@@ -19,26 +23,13 @@ export default class D3AdvancedValidations {
   });
 
   readonly dinnerForm = form(this.model, x => {
-    required(x.username, {
-      message: 'Username is required'
-    });
-    minLength(x.username, 5, {
-      message: 'Username must be at least 5 characters long'
-    });
-    maxLength(x.username, 15, {
-      message: 'Username cannot be longer than 15 characters'
-    });
-    required(x.food);
-    required(x.rating);
-    max(x.rating, 10);
-    min(x.rating, 1);
-    capitalized(x.food);
-    hidden(x.comeBack, ctx => ctx.valueOf(x.rating) < 5);
+    apply(x, basicDinnerSchema);
+    hidden(x.comeBack, ctx => ctx.valueOf(x.rating) < 2);
     validateTree(x, ctx => {
       const rating = ctx.valueOf(x.rating);
       const comeBack = ctx.valueOf(x.comeBack);
 
-      if ((rating >= 8) && (comeBack === false)) {
+      if ((rating >= 4) && (comeBack === false)) {
         return [
           customError({
             kind: 'come-back-high-rating',

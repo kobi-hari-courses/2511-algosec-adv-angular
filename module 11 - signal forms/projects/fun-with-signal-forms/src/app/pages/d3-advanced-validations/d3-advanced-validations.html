@@ -9,7 +9,7 @@
     <input type="text" [field]="dinnerForm.food" />
   </app-field>
   <app-field [field]="dinnerForm.rating" label="Rating">
-    <input type="range" [field]="dinnerForm.rating" />
+    <app-star-rating [field]="dinnerForm.rating" />
   </app-field>
   @if(!dinnerForm.comeBack().hidden()) {
   <app-field [field]="dinnerForm.comeBack" label="Would you come back?">

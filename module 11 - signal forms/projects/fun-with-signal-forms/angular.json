@@ -30,7 +30,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss", 
+              "node_modules/material-symbols/index.css"
             ]
           },
           "configurations": {

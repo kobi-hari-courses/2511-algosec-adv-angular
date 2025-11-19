@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+
+    span {
+        font-size: 32px;
+        color: gray;
+        cursor: pointer;
+
+        &.filled {
+            color: gold;
+            font-variation-settings: 'FILL' 1;
+        }
+    }
+}
