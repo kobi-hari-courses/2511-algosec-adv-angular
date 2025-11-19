@@ -1,18 +1,18 @@
 <div class="form">
   <div class="form-header">Dinner Review</div>
 
-  <app-field  label="Username">
+  <app-field>
     <input type="text" [field]="dinnerForm.username" />
   </app-field>
 
-  <app-field label="Food">
+  <app-field>
     <input type="text" [field]="dinnerForm.food" />
   </app-field>
-  <app-field  label="Rating">
+  <app-field >
     <app-star-rating [field]="dinnerForm.rating" />
   </app-field>
   @if(!dinnerForm.comeBack().hidden()) {
-  <app-field  label="Would you come back?">
+  <app-field>
     <input type="checkbox" [field]="dinnerForm.comeBack" />
   </app-field>
 

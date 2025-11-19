@@ -7,4 +7,5 @@ export const routes: Routes = [
     { path: 'd3-advanced-validations', loadComponent: () => import('./pages/d3-advanced-validations/d3-advanced-validations') },
     { path: 'd4-form-array', loadComponent: () => import('./pages/d4-form-array/d4-form-array') },
     { path: 'd5-submit', loadComponent: () => import('./pages/d5-submit/d5-submit') },
+    { path: 'd6-metadata', loadComponent: () => import('./pages/d6-metadata/d6-metadata') },
 ];

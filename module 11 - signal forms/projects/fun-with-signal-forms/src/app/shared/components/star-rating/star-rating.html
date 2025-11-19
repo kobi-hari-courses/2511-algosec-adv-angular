@@ -1,4 +1,4 @@
-@for(v of [1, 2, 3, 4, 5]; track v) {
+@for(v of possibleValues(); track v) {
 <span [class.filled]="value() >= v" class="material-symbols-outlined"
     (click)="value.set(v)"
     >star</span>

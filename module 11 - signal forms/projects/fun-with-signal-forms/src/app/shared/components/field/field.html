@@ -5,6 +5,13 @@
     }
 </label>
 <ng-content></ng-content>
+@if(hasLengths()) {
+  <div class="hint">{{lengthHint()}}</div>
+}
+@if(hasValues()) {
+  <div class="hint">{{valueHint()}}</div>
+}
+
 @if(field()().touched()) { @for(err of field()().errors(); track err.kind) {
 <div class="error">
   {{ err.message }}
