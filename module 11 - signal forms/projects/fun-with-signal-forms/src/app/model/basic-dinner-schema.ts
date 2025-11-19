@@ -1,6 +1,6 @@
 import { max, maxLength, min, minLength, required, schema } from '@angular/forms/signals';
 import { DinnerReview } from './dinner-review.model';
-import { capitalized } from '../pages/d3-advanced-validations/validators';
+import { capitalized } from '../shared/validators';
 
 export const basicDinnerSchema = schema<DinnerReview>((x) => {
   required(x.username, {

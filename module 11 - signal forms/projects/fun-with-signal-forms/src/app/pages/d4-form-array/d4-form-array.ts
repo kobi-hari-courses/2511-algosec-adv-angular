@@ -1,25 +1,25 @@
 import { Component, signal } from '@angular/core';
-import { DinnerReview } from '../../model/dinner-review.model';
-import { apply, customError, form, hidden, max, maxLength, min, minLength, required, validate, validateAsync, validateStandardSchema, validateTree } from '@angular/forms/signals';
+import { DinnerReview, DinnerReviewWithComments } from '../../model/dinner-review.model';
+import { apply, applyEach, customError, form, hidden, required, validateTree } from '@angular/forms/signals';
 import { SharedModule } from '../../shared/shared.module';
-import { capitalized } from '../../shared/validators';
 import { basicDinnerSchema } from '../../model/basic-dinner-schema';
 
 @Component({
-  selector: 'app-d3-advanced-validations',
+  selector: 'app-d4-form-array',
   imports: [SharedModule],
-  templateUrl: './d3-advanced-validations.html',
-  styleUrl: './d3-advanced-validations.scss',
+  templateUrl: './d4-form-array.html',
+  styleUrl: './d4-form-array.scss',
 })
-export default class D3AdvancedValidations {
-  readonly myNum = signal(3);
-
-
-  readonly model = signal<DinnerReview>({
+export default class D4FormArray {
+  readonly model = signal<DinnerReviewWithComments>({
     username: '', 
     food: '', 
     rating: 5, 
-    comeBack: true
+    comeBack: true, 
+    comments: [
+      { comment: 'Great food!', username: 'John Smith' },
+      { comment: 'Will come again.', username: 'Jane Doe' }
+    ]
   });
 
   readonly dinnerForm = form(this.model, x => {
@@ -47,23 +47,20 @@ export default class D3AdvancedValidations {
       return undefined;
 
     });
-    // validate(x.food, x => {
-    //   // check if the first letter is uppercase
-    //   const value = x.value();
-    //   if (value.length === 0) {
-    //     return undefined;
-    //   }
-    //   const firstLetter = value.charAt(0);
-    //   if (firstLetter === firstLetter.toUpperCase()) {
-    //     return undefined;
-    //   }
-
-    //   return customError({
-    //     kind: 'first-letter-uppercase',
-    //     message: 'The first letter must be uppercase'
-    //   })
-
-    // })
+    applyEach(x.comments, ctx => {
+      required(ctx.username, {message: 'Username is required'});
+      required(ctx.comment, {message: 'Comment is required'});
+    })
   });
+
+  addComment() {
+    this.model.update(current => ({
+      ...current, 
+      comments: [
+        ...current.comments, 
+        { comment: '', username: '' }
+      ]
+    }))
+  }
 
 }

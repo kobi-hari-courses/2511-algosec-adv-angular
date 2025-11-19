@@ -5,15 +5,11 @@ export interface DinnerReview {
     readonly comeBack: boolean;
 }
 
-
-export interface HasAdress {
-    readonly city: string;
-    readonly street: string;
-    readonly postalCode: string;
+export interface DinnerReviewWithComments extends DinnerReview {
+    readonly comments: DinnerComment[];
 }
 
-export interface Person extends HasAdress {
-}
-
-export interface Business extends HasAdress {
+export interface DinnerComment {
+    readonly comment: string;
+    readonly username: string;
 }
