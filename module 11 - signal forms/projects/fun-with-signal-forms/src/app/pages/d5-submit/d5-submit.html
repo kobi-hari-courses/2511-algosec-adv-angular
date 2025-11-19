@@ -20,7 +20,13 @@
 
   <button [disabled]="dinnerForm().invalid()" (click)="onSubmitForm()"
     [class.pending]="dinnerForm().pending()"
-  >Submit</button>
+  >
+  @if(dinnerForm().submitting()) {
+    Submitting...
+  } @else {
+    Submit
+  }
+</button>
 </div>
 
 <pre>

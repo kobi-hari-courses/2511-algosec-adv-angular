@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { DinnerReview } from '../../model/dinner-review.model';
-import { apply, customError, form, hidden, submit, validateTree } from '@angular/forms/signals';
+import { apply, customError, disabled, form, hidden, submit, validateTree } from '@angular/forms/signals';
 import { SharedModule } from '../../shared/shared.module';
 import { basicDinnerSchema } from '../../model/basic-dinner-schema';
 import { ReviewsService } from '../../services/reviews.service';
@@ -24,6 +24,7 @@ export default class D5Submit {
   readonly dinnerForm = form(this.model, x => {
     apply(x, basicDinnerSchema);
     hidden(x.comeBack, ctx => ctx.valueOf(x.rating) < 2);
+    disabled(x, ctx => ctx.state.submitting());
     validateTree(x, ctx => {
       const rating = ctx.valueOf(x.rating);
       const comeBack = ctx.valueOf(x.comeBack);

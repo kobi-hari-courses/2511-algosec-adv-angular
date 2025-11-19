@@ -61,6 +61,10 @@ body {
         border-color: red;
         background-color: rgb(255, 225, 225);
       }
+      &:disabled {
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+      }
     }
 
     input[type='checkbox'] {
