@@ -6,12 +6,12 @@ import { basicDinnerSchema } from '../../model/basic-dinner-schema';
 import { ReviewsService } from '../../services/reviews.service';
 
 @Component({
-  selector: 'app-d5-submit',
+  selector: 'app-d6-metadata',
   imports: [SharedModule],
-  templateUrl: './d5-submit.html',
-  styleUrl: './d5-submit.scss',
+  templateUrl: './d6-metadata.html',
+  styleUrl: './d6-metadata.scss',
 })
-export default class D5Submit {
+export default class D6Metadata {
   readonly reviewsService = inject(ReviewsService);
 
   readonly model = signal<DinnerReview>({
@@ -47,22 +47,5 @@ export default class D5Submit {
 
     });
   });
-
-  async onSubmitForm() {
-    const value = this.dinnerForm().value();
-    console.log('Submitting review', value);    
-    await submit(this.dinnerForm, async (ctx) => {
-      console.log('Calling Service');
-      const res = await this.reviewsService.submitReview(value);
-      console.log('Service returned', res);
-
-
-      return res.map(pair => customError({
-        kind: pair[1], 
-        message: pair[1], 
-        field: ctx[pair[0]]
-      }))
-    })
-  }
 
 }

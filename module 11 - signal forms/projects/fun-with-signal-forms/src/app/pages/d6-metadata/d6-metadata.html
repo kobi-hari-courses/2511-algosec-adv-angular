@@ -1,0 +1,32 @@
+<div class="form">
+  <div class="form-header">Dinner Review</div>
+
+  <app-field  label="Username">
+    <input type="text" [field]="dinnerForm.username" />
+  </app-field>
+
+  <app-field label="Food">
+    <input type="text" [field]="dinnerForm.food" />
+  </app-field>
+  <app-field  label="Rating">
+    <app-star-rating [field]="dinnerForm.rating" />
+  </app-field>
+  @if(!dinnerForm.comeBack().hidden()) {
+  <app-field  label="Would you come back?">
+    <input type="checkbox" [field]="dinnerForm.comeBack" />
+  </app-field>
+
+  }
+
+  <button [disabled]="dinnerForm().invalid()"
+    [class.pending]="dinnerForm().pending()"
+  >Submit</button>
+</div>
+
+<pre>
+    {{ model() | json }}
+</pre>
+<pre>
+  <div>Rating: {{ dinnerForm.rating().errors() | json}}</div>
+  <div>Username: {{ dinnerForm.username().errors() | json}}</div>
+</pre>
