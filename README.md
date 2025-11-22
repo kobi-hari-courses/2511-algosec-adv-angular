@@ -11,6 +11,7 @@
 * [Module 08 - Theming Angular and Material](./module%2008%20-%20theming%20angular/README.md)
 * [Module 09 - Angular Material Essentials](./module%2009%20-%20angular%20material/README.md)
 * [Module 10 - NgRx signal store](./module%2010%20-%20ngrx%20signals%20store/README.md)
+* [Module 11 - Signal Forms](./module%2011%20-%20signal%20forms/README.md)
 
 Agenda
 ------
